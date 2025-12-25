@@ -12,9 +12,14 @@ public class madLibsGame {
         String adjective3;
 
         System.out.print("Enter an adjective (description): ");
+        adjective1 = scn.nextLine();
         System.out.print("Enter a noun (animal or person): ");
+        noun1 = scn.nextLine();
         System.out.print("Enter an adjective (description): ");
+        adjective2 = scn.nextLine();
         System.out.print("Enter a verb end with -ing (action): ");
+        verb1 = scn.nextLine();
         System.out.print("Enter an adjective (description): ");
+        adjective3 = scn.nextLine();
     }
 }
