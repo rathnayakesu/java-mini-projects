@@ -14,6 +14,8 @@ public class quiz {
                               {"Merge Sort", "Quick Sort", "Bubble Sort", "Heap Sort"}};
 
         int[] correctAnswer = {1, 2, 3, 2, 3};
+        int score = 0;
+        int guess;
 
     }
 }
