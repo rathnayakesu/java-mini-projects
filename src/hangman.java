@@ -19,23 +19,37 @@ public class hangman {
         System.out.println("****************************");
         System.out.println();
 
-        System.out.print("Word: ");
+        while(wrongGuesses < 6){
+            System.out.println(getHangmanArt(wrongGuesses));
 
-        for(char c : wordState){
-            System.out.print(c + " ");
+            System.out.print("Word: ");
+
+            for(char c : wordState){
+                System.out.print(c + " ");
+            }
+            System.out.println();
+
+            System.out.print("Guess a letter: ");
+            char guess = s.next().toLowerCase().charAt(0);
+
+            if (word.indexOf(guess) >= 0){
+                System.out.println("CORRECT LETTER!");
+
+                for(int i=0; i < word.length(); i++){
+                    if(word.charAt(i) == guess){
+                        wordState.set(i, guess);
+                    }
+                }
+            }
+            else{
+                wrongGuesses++;
+                System.out.println("WRONG LETTER!");
+            }
         }
-        System.out.println();
-
-        System.out.print("Guess a letter: ");
-        char guess = s.next().toLowerCase().charAt(0);
-
-        if (word.indexOf(guess) >= 0){
-            System.out.println("CORRECT LETTER!");
+        if(wrongGuesses >= 6){
+            System.out.println(getHangmanArt(wrongGuesses));
+            System.out.println("GAME OVER!");
         }
-        else{
-            System.out.println("WRONG LETTER!");
-        }
-
 
         s.close();
     }
