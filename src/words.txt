@@ -1,0 +1,6 @@
+apple
+coconut
+banana
+lemon
+orange
+pineapple

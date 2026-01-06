@@ -1,12 +1,37 @@
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
 
 public class hangman {
     public static void main(String[] args) {
 
         Scanner s = new Scanner(System.in);
-        String word = "pizza";
+        String filePath = "src/words.txt";
+        ArrayList<String> words = new ArrayList<>();
+
+        try(BufferedReader reader = new BufferedReader(new FileReader(filePath))){
+            String line;
+            while((line = reader.readLine()) != null){
+                words.add(line.trim());
+            }
+        }
+        catch(FileNotFoundException e){
+            System.out.println("Can not find the file.");
+        }
+        catch (IOException e){
+            System.out.println("Something went wrong!");
+        }
+
+        Random random = new Random();
+        String word;
+        if (!words.isEmpty()) {
+            word = words.get(random.nextInt(words.size()));
+        } else {
+            System.out.println("Error: No words found to start the game.");
+            return;
+        }
+
         ArrayList<Character> wordState = new ArrayList<>();
         int wrongGuesses = 0;
 
@@ -40,6 +65,12 @@ public class hangman {
                         wordState.set(i, guess);
                     }
                 }
+                if(!wordState.contains('_')){
+                    System.out.println(getHangmanArt(wrongGuesses));
+                    System.out.println("YOU Win");
+                    System.out.println("The Word was "+ word);
+                    break;
+                }
             }
             else{
                 wrongGuesses++;
@@ -49,6 +80,7 @@ public class hangman {
         if(wrongGuesses >= 6){
             System.out.println(getHangmanArt(wrongGuesses));
             System.out.println("GAME OVER!");
+            System.out.println("The word was "+ word);
         }
 
         s.close();
